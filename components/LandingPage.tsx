@@ -57,16 +57,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
       
       {/* Subtle Dark Grid Background */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0 pointer-events-none"></div>
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(30,41,59,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(30,41,59,0.5)_1px,transparent_1px)] bg-[size:40px_40px] opacity-10"></div>
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(30,41,59,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(30,41,59,0.3)_1px,transparent_1px)] bg-[size:50px_50px] opacity-20"></div>
 
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 border-b border-brandBorder bg-brandBg/80 backdrop-blur-md">
+      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 border-b border-brandBorder bg-brandSurface/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.location.reload()}>
             <div className="bg-brandSurfaceLight border border-brandBorder p-2 rounded-lg group-hover:border-brandPrimary/50 transition-colors">
               <Dog className="w-5 h-5 text-brandPrimary" />
             </div>
-            <span className="text-lg font-bold tracking-tight text-white">LojinIC <span className="text-brandTextSecondary text-xs font-medium ml-1 bg-brandSurfaceLight px-1.5 py-0.5 rounded">PRO</span></span>
+            <span className="text-lg font-bold tracking-tight text-white">LojinIC <span className="text-brandTextSecondary text-xs font-medium ml-1 bg-brandSurfaceLight px-1.5 py-0.5 rounded border border-brandBorder">PRO</span></span>
           </div>
           
           <div className="flex items-center gap-3">
@@ -93,7 +93,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
         {/* Left: Value Prop */}
         <div className="lg:w-[55%] flex flex-col justify-center p-8 lg:p-20 xl:p-24">
           <div className="max-w-2xl animate-slide-up">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandSurfaceLight border border-brandBorder text-brandAccent text-xs font-bold uppercase tracking-wider mb-8 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandSurface border border-brandBorder text-brandAccent text-xs font-bold uppercase tracking-wider mb-8 shadow-sm">
               <Sparkles className="w-3 h-3" /> Plataforma Enterprise
             </div>
 
@@ -205,6 +205,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
 
               <div className="mt-8 pt-6 border-t border-brandBorder text-center">
                 <button 
+                  type="button"
                   onClick={() => setIsRegister(!isRegister)}
                   className="text-xs text-brandTextSecondary hover:text-white transition-colors font-medium"
                 >
@@ -220,8 +221,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
 };
 
 const FeatureCard = ({ icon, title, desc }: any) => (
-  <div className="flex gap-4 p-4 rounded-xl bg-brandSurface/50 border border-brandBorder hover:bg-brandSurface transition-colors duration-300 group">
-    <div className="w-10 h-10 rounded-lg bg-brandSurfaceLight text-brandPrimary flex items-center justify-center shrink-0 border border-brandBorder group-hover:border-brandPrimary/30 transition-colors">
+  <div className="flex gap-4 p-4 rounded-xl bg-brandSurface border border-brandBorder hover:border-brandPrimary/40 hover:bg-brandSurfaceLight transition-all duration-300 group shadow-sm">
+    <div className="w-10 h-10 rounded-lg bg-brandBg text-brandPrimary flex items-center justify-center shrink-0 border border-brandBorder group-hover:border-brandPrimary/30 transition-colors">
       {icon}
     </div>
     <div>
@@ -237,7 +238,7 @@ const PlanOption = ({ title, price, active, onClick, tag }: any) => (
     className={`cursor-pointer relative p-3 rounded-lg border transition-all duration-200 text-center ${
       active 
         ? 'border-brandPrimary bg-brandPrimary/10' 
-        : 'border-brandBorder bg-brandSurfaceLight/30 hover:border-brandTextSecondary'
+        : 'border-brandBorder bg-brandBg hover:border-brandTextSecondary'
     }`}
   >
     {tag && <span className="absolute -top-2 -right-1 bg-brandAccent text-brandBg text-[9px] font-bold px-1.5 py-0.5 rounded shadow-sm">{tag}</span>}
@@ -253,6 +254,6 @@ const InputLabel = ({ children }: {children: React.ReactNode}) => (
 const DarkInput = (props: any) => (
   <input 
     {...props}
-    className="w-full px-4 py-3 rounded-lg bg-brandBg border border-brandBorder text-brandTextPrimary placeholder:text-slate-700 focus:border-brandPrimary focus:ring-1 focus:ring-brandPrimary transition-all text-sm shadow-inner"
+    className="w-full px-4 py-3 rounded-lg bg-brandBg border border-brandBorder text-brandTextPrimary placeholder:text-brandTextSecondary/50 focus:border-brandPrimary focus:ring-1 focus:ring-brandPrimary transition-all text-sm shadow-inner outline-none"
   />
 );

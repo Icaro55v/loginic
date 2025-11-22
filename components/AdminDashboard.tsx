@@ -47,7 +47,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
 
   return (
     <div className="min-h-screen bg-brandBg text-brandTextPrimary font-sans">
-      <header className="border-b border-brandBorder bg-brandBg sticky top-0 z-10">
+      <header className="border-b border-brandBorder bg-brandSurface sticky top-0 z-10 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
           <div className="flex items-center gap-2 text-white font-bold text-xl">
              <Shield className="text-brandPrimary" /> <span className="tracking-tight">ADMIN CONSOLE</span>
@@ -87,7 +87,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
              <label className="block text-xs text-brandTextSecondary mb-1">Chave Pix de Recebimento</label>
              <div className="flex gap-2">
                <input 
-                 className="bg-brandBg border border-brandBorder rounded text-white p-2 flex-1 text-sm font-mono focus:border-brandPrimary focus:outline-none placeholder:text-slate-700"
+                 className="bg-brandBg border border-brandBorder rounded text-white p-2 flex-1 text-sm font-mono focus:border-brandPrimary focus:outline-none placeholder:text-brandTextSecondary/50 focus:ring-1 focus:ring-brandPrimary transition-all"
                  value={pixKey}
                  onChange={e => setPixKey(e.target.value)}
                />
@@ -104,7 +104,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brandTextSecondary" />
               <input 
-                className="bg-brandBg border border-brandBorder rounded pl-9 pr-4 py-2 text-sm text-white focus:border-brandPrimary outline-none placeholder:text-slate-700"
+                className="bg-brandBg border border-brandBorder rounded pl-9 pr-4 py-2 text-sm text-white focus:border-brandPrimary outline-none placeholder:text-brandTextSecondary/50 focus:ring-1 focus:ring-brandPrimary transition-all"
                 placeholder="Buscar loja..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
@@ -112,9 +112,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
             </div>
           </div>
           
-          <div className="overflow-y-auto flex-1 p-4 space-y-3">
+          <div className="overflow-y-auto flex-1 p-4 space-y-3 custom-scrollbar">
              {filteredStores.map(store => (
-               <div key={store.id} className="bg-brandBg p-4 rounded border border-brandBorder flex items-center justify-between hover:border-brandTextSecondary/50 transition-colors">
+               <div key={store.id} className="bg-brandBg p-4 rounded border border-brandBorder flex items-center justify-between hover:border-brandTextSecondary/30 transition-colors">
                  <div>
                    <h4 className="font-bold text-white text-sm">{store.name}</h4>
                    <div className="flex items-center gap-3 text-xs mt-1">

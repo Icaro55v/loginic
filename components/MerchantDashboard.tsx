@@ -196,7 +196,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                            <div>
                              <label className="block text-xs font-bold text-brandTextSecondary uppercase mb-1.5">Descrição</label>
                              <textarea 
-                                className="w-full px-4 py-2.5 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all h-24 resize-none placeholder:text-slate-700 focus:ring-1 focus:ring-brandPrimary"
+                                className="w-full px-4 py-2.5 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all h-24 resize-none placeholder:text-brandTextSecondary/50 focus:ring-1 focus:ring-brandPrimary outline-none"
                                 placeholder="Detalhes do produto..."
                                 value={prodForm.description || ''}
                                 onChange={e => setProdForm({...prodForm, description: e.target.value})}
@@ -209,15 +209,15 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                               <div className="flex flex-col gap-3">
                                 <div className="flex gap-2">
                                   <div className="w-10 h-10 rounded bg-brandBg border border-brandBorder flex items-center justify-center shrink-0">
-                                    <ImageIcon className="w-5 h-5 text-slate-600" />
+                                    <ImageIcon className="w-5 h-5 text-brandTextSecondary" />
                                   </div>
-                                  <input className="flex-1 bg-brandBg border border-brandBorder rounded px-3 text-sm text-white focus:border-brandPrimary transition-all placeholder:text-slate-700 focus:ring-1 focus:ring-brandPrimary" value={prodForm.imageUrl || ''} onChange={e => setProdForm({...prodForm, imageUrl: e.target.value})} placeholder="https://..." />
+                                  <input className="flex-1 bg-brandBg border border-brandBorder rounded px-3 text-sm text-white focus:border-brandPrimary transition-all placeholder:text-brandTextSecondary/50 focus:ring-1 focus:ring-brandPrimary outline-none" value={prodForm.imageUrl || ''} onChange={e => setProdForm({...prodForm, imageUrl: e.target.value})} placeholder="https://..." />
                                 </div>
                                 {/* Image Preview */}
                                 {prodForm.imageUrl && (
                                   <div className="w-full h-32 rounded-lg bg-brandBg border border-brandBorder overflow-hidden relative">
                                     <img src={prodForm.imageUrl} alt="Preview" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display = 'none'} />
-                                    <span className="absolute bottom-2 right-2 text-[10px] bg-black/60 px-2 py-1 rounded text-white">Preview</span>
+                                    <span className="absolute bottom-2 right-2 text-[10px] bg-black/60 px-2 py-1 rounded text-white backdrop-blur">Preview</span>
                                   </div>
                                 )}
                               </div>
@@ -243,7 +243,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                     <div 
                       key={p.id} 
                       onClick={() => handleEditClick(p)}
-                      className="group bg-brandSurface border border-brandBorder p-3 rounded-xl hover:border-brandPrimary/50 transition-all flex gap-4 items-center relative overflow-hidden cursor-pointer hover:bg-brandSurfaceLight/50"
+                      className="group bg-brandSurface border border-brandBorder p-3 rounded-xl hover:border-brandPrimary/50 transition-all flex gap-4 items-center relative overflow-hidden cursor-pointer hover:bg-brandSurfaceLight/50 shadow-sm"
                     >
                        <div className="w-16 h-16 rounded-lg bg-brandBg overflow-hidden shrink-0 border border-brandBorder relative">
                          <img src={p.imageUrl} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt={p.name} />
@@ -338,7 +338,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                      <div>
                         <label className="block text-xs font-bold text-brandTextSecondary uppercase mb-1.5">WhatsApp Comercial</label>
                         <div className="relative">
-                            <input className="w-full px-4 py-3 pl-12 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all placeholder:text-slate-700 focus:ring-1 focus:ring-brandPrimary" placeholder="5511999999999" value={settings.whatsapp} onChange={e => setSettings({...settings, whatsapp: e.target.value.replace(/\D/g,'')})} />
+                            <input className="w-full px-4 py-3 pl-12 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all placeholder:text-brandTextSecondary/50 focus:ring-1 focus:ring-brandPrimary outline-none" placeholder="5511999999999" value={settings.whatsapp} onChange={e => setSettings({...settings, whatsapp: e.target.value.replace(/\D/g,'')})} />
                             <div className="absolute left-4 top-3.5 text-brandTextSecondary font-bold text-xs">Tel:</div>
                         </div>
                         <p className="text-[10px] text-brandTextSecondary mt-1">Necessário incluir DDD e código do país (Ex: 55).</p>
@@ -398,7 +398,7 @@ const InputGroup = ({ label, value, onChange, type = "text", required, placehold
     <input 
       type={type}
       required={required}
-      className="w-full px-4 py-2.5 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all placeholder:text-slate-700 focus:ring-1 focus:ring-brandPrimary"
+      className="w-full px-4 py-2.5 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all placeholder:text-brandTextSecondary/50 focus:ring-1 focus:ring-brandPrimary outline-none"
       placeholder={placeholder}
       value={value}
       onChange={e => onChange(e.target.value)}

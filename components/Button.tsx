@@ -19,15 +19,15 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   ...props
 }) => {
-  const baseStyle = "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-brandBg focus:ring-brandPrimary";
+  const baseStyle = "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-brandBg focus:ring-brandPrimary active:scale-[0.98]";
   
   const variants = {
-    primary: "bg-brandPrimary text-white hover:bg-brandPrimaryHover border border-transparent shadow-lg shadow-brandPrimary/20",
-    secondary: "bg-brandSurfaceLight text-brandTextPrimary hover:bg-slate-700 border border-brandBorder hover:border-slate-600",
-    outline: "border border-brandBorder text-brandTextSecondary hover:border-brandPrimary hover:text-brandPrimary bg-transparent",
+    primary: "bg-brandPrimary text-white hover:bg-brandPrimaryHover border border-transparent shadow-lg shadow-brandPrimary/25 hover:shadow-brandPrimary/40",
+    secondary: "bg-brandSurfaceLight text-brandTextPrimary hover:bg-brandBorder border border-brandBorder hover:border-brandTextSecondary/30",
+    outline: "border border-brandBorder text-brandTextSecondary hover:border-brandPrimary hover:text-brandPrimary bg-transparent hover:bg-brandSurfaceLight/50",
     ghost: "bg-transparent text-brandTextSecondary hover:text-brandTextPrimary hover:bg-brandSurfaceLight",
-    danger: "bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20",
-    success: "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 hover:bg-emerald-500/20",
+    danger: "bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20 hover:border-red-500/30",
+    success: "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 hover:bg-emerald-500/20 hover:border-emerald-500/30",
   };
 
   const sizes = {
