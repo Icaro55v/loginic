@@ -116,7 +116,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
   };
 
   if (loading) return <div className="h-screen flex items-center justify-center bg-brandBg"><div className="w-8 h-8 border-2 border-brandPrimary border-t-transparent rounded-full animate-spin"></div></div>;
-  if (!store) return <div className="p-8 text-center text-slate-400">Erro ao carregar loja. <button onClick={onLogout} className="text-brandPrimary underline">Sair</button></div>;
+  if (!store) return <div className="min-h-screen bg-brandBg flex items-center justify-center text-brandTextSecondary">Erro ao carregar loja. <button onClick={onLogout} className="text-brandPrimary underline ml-2">Sair</button></div>;
 
   const isLocked = store.status !== StoreStatus.ACTIVE;
 
@@ -137,7 +137,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                 <h1 className="font-bold text-sm tracking-wide text-white">{store.name}</h1>
                 <div className="flex items-center gap-1.5">
                   <div className={`w-1.5 h-1.5 rounded-full ${isLocked ? 'bg-amber-500 animate-pulse' : 'bg-emerald-500'}`}></div>
-                  <span className={`text-[10px] font-bold uppercase ${isLocked ? 'text-amber-500' : 'text-slate-500'}`}>{isLocked ? 'Aguardando Pagamento' : 'Operacional'}</span>
+                  <span className={`text-[10px] font-bold uppercase ${isLocked ? 'text-amber-500' : 'text-brandTextSecondary'}`}>{isLocked ? 'Aguardando Pagamento' : 'Operacional'}</span>
                 </div>
              </div>
           </div>
@@ -157,7 +157,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
         {/* Stats Row */}
         {!isLocked && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 animate-fade-in">
-            <StatCard label="Total Produtos" value={products.length.toString()} icon={<Package className="w-4 h-4 text-blue-400"/>} />
+            <StatCard label="Total Produtos" value={products.length.toString()} icon={<Package className="w-4 h-4 text-brandPrimary"/>} />
             <StatCard label="Em Estoque (R$)" value={totalValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} icon={<DollarSign className="w-4 h-4 text-emerald-400"/>} />
             <StatCard label="Destaques" value={totalFeatured.toString()} icon={<TrendingUp className="w-4 h-4 text-amber-400"/>} />
             <StatCard label="Plano Ativo" value={store.plan} icon={<CreditCard className="w-4 h-4 text-purple-400"/>} capitalize />
@@ -165,7 +165,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
         )}
 
         {/* Tabs */}
-        <div className="border-b border-brandBorder mb-8 flex gap-6 overflow-x-auto">
+        <div className="border-b border-brandBorder mb-8 flex gap-6 overflow-x-auto no-scrollbar">
           <TabButton active={activeTab === 'products'} onClick={() => setActiveTab('products')} label="Catálogo" />
           <TabButton active={activeTab === 'subscription'} onClick={() => setActiveTab('subscription')} label="Assinatura" alert={isLocked} />
           <TabButton active={activeTab === 'settings'} onClick={() => setActiveTab('settings')} label="Configurações" />
@@ -185,7 +185,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
 
                 {isAdding && (
                   <div className="bg-brandSurface border border-brandBorder rounded-xl p-6 animate-fade-in shadow-lg">
-                    <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider border-b border-white/5 pb-2">
+                    <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider border-b border-brandBorder pb-2">
                       {editingId ? 'Editar Produto' : 'Adicionar Produto'}
                     </h3>
                     <form onSubmit={handleSaveProduct}>
@@ -194,9 +194,9 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                            <InputGroup label="Nome do Produto" value={prodForm.name} onChange={(v: string) => setProdForm({...prodForm, name: v})} placeholder="Ex: Camiseta Preta Premium" required />
                            <InputGroup label="Preço (R$)" value={prodForm.price} onChange={(v: string) => setProdForm({...prodForm, price: Number(v)})} placeholder="0.00" type="number" required />
                            <div>
-                             <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Descrição</label>
+                             <label className="block text-xs font-bold text-brandTextSecondary uppercase mb-1.5">Descrição</label>
                              <textarea 
-                                className="w-full px-4 py-2.5 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all h-24 resize-none"
+                                className="w-full px-4 py-2.5 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all h-24 resize-none placeholder:text-slate-700 focus:ring-1 focus:ring-brandPrimary"
                                 placeholder="Detalhes do produto..."
                                 value={prodForm.description || ''}
                                 onChange={e => setProdForm({...prodForm, description: e.target.value})}
@@ -205,13 +205,13 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                          </div>
                          <div className="space-y-4">
                             <div>
-                              <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">URL da Imagem</label>
+                              <label className="block text-xs font-bold text-brandTextSecondary uppercase mb-1.5">URL da Imagem</label>
                               <div className="flex flex-col gap-3">
                                 <div className="flex gap-2">
                                   <div className="w-10 h-10 rounded bg-brandBg border border-brandBorder flex items-center justify-center shrink-0">
                                     <ImageIcon className="w-5 h-5 text-slate-600" />
                                   </div>
-                                  <input className="flex-1 bg-brandBg border border-brandBorder rounded px-3 text-sm text-white focus:border-brandPrimary transition-all" value={prodForm.imageUrl || ''} onChange={e => setProdForm({...prodForm, imageUrl: e.target.value})} placeholder="https://..." />
+                                  <input className="flex-1 bg-brandBg border border-brandBorder rounded px-3 text-sm text-white focus:border-brandPrimary transition-all placeholder:text-slate-700 focus:ring-1 focus:ring-brandPrimary" value={prodForm.imageUrl || ''} onChange={e => setProdForm({...prodForm, imageUrl: e.target.value})} placeholder="https://..." />
                                 </div>
                                 {/* Image Preview */}
                                 {prodForm.imageUrl && (
@@ -222,11 +222,11 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                                 )}
                               </div>
                             </div>
-                            <div className="bg-brandBg p-3 rounded border border-brandBorder flex items-center gap-3 mt-2 hover:border-brandPrimary/50 transition-colors cursor-pointer" onClick={() => setProdForm({...prodForm, featured: !prodForm.featured})}>
-                              <div className={`w-5 h-5 rounded border flex items-center justify-center ${prodForm.featured ? 'bg-brandPrimary border-brandPrimary' : 'border-brandBorder'}`}>
+                            <div className="bg-brandBg p-3 rounded border border-brandBorder flex items-center gap-3 mt-2 hover:border-brandPrimary/50 transition-colors cursor-pointer group" onClick={() => setProdForm({...prodForm, featured: !prodForm.featured})}>
+                              <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${prodForm.featured ? 'bg-brandPrimary border-brandPrimary' : 'border-brandBorder group-hover:border-brandTextSecondary'}`}>
                                 {prodForm.featured && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
                               </div>
-                              <label className="text-sm text-slate-300 cursor-pointer select-none">Destacar na Loja</label>
+                              <label className="text-sm text-brandTextSecondary cursor-pointer select-none group-hover:text-brandTextPrimary transition-colors">Destacar na Loja</label>
                             </div>
                          </div>
                       </div>
@@ -249,10 +249,10 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                          <img src={p.imageUrl} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt={p.name} />
                        </div>
                        <div className="flex-1 min-w-0">
-                         <h3 className="font-bold text-slate-200 truncate text-sm mb-1 group-hover:text-white transition-colors">{p.name}</h3>
+                         <h3 className="font-bold text-brandTextPrimary truncate text-sm mb-1">{p.name}</h3>
                          <div className="flex items-center gap-2">
                             <div className="text-brandPrimary font-mono font-bold text-sm">R$ {p.price.toFixed(2)}</div>
-                            {p.featured && <span className="text-[9px] bg-brandAccent/10 text-brandAccent px-1.5 rounded uppercase font-bold">Destaque</span>}
+                            {p.featured && <span className="text-[9px] bg-brandAccent/10 text-brandAccent px-1.5 rounded uppercase font-bold border border-brandAccent/20">Destaque</span>}
                          </div>
                        </div>
                        <div className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1 bg-brandSurface shadow-lg rounded-lg border border-brandBorder p-1">
@@ -266,10 +266,10 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                     </div>
                   ))}
                   {products.length === 0 && !isAdding && (
-                    <div className="col-span-full flex flex-col items-center justify-center py-20 text-slate-600 border border-dashed border-brandBorder rounded-xl bg-brandSurface/20">
+                    <div className="col-span-full flex flex-col items-center justify-center py-20 text-brandTextSecondary border border-dashed border-brandBorder rounded-xl bg-brandSurface/20">
                       <Box size={40} className="mb-4 opacity-50" />
                       <p className="text-sm font-medium">Seu catálogo está vazio.</p>
-                      <p className="text-xs text-slate-500 mt-1">Adicione seu primeiro produto para começar a vender.</p>
+                      <p className="text-xs mt-1 opacity-70">Adicione seu primeiro produto para começar a vender.</p>
                     </div>
                   )}
                 </div>
@@ -285,17 +285,17 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                       <CreditCard className="w-6 h-6 text-brandAccent" />
                    </div>
                    <h2 className="text-lg font-bold text-white">Assinatura {store.plan === 'mensal' ? 'Mensal' : 'Anual'}</h2>
-                   <p className="text-slate-400 text-xs mt-1">Status Atual: <span className={`font-bold uppercase ${isLocked ? 'text-amber-500' : 'text-emerald-500'}`}>{isLocked ? 'Pendente' : 'Ativo'}</span></p>
+                   <p className="text-brandTextSecondary text-xs mt-1">Status Atual: <span className={`font-bold uppercase ${isLocked ? 'text-amber-500' : 'text-emerald-500'}`}>{isLocked ? 'Pendente' : 'Ativo'}</span></p>
                 </div>
                 
                 <div className="p-6 space-y-6">
                   <div className="flex justify-between items-center p-4 bg-brandBg rounded-lg border border-brandBorder">
-                    <span className="text-sm text-slate-400 font-medium">Valor do Plano</span>
+                    <span className="text-sm text-brandTextSecondary font-medium">Valor do Plano</span>
                     <span className="text-2xl font-bold text-white">{store.plan === 'mensal' ? 'R$ 25,00' : 'R$ 300,00'}</span>
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-slate-500 uppercase mb-2 block">Chave Pix para Pagamento</label>
+                    <label className="text-xs font-bold text-brandTextSecondary uppercase mb-2 block">Chave Pix para Pagamento</label>
                     <div className="flex items-center gap-2">
                       <code className="flex-1 bg-brandBg border border-brandBorder p-3 rounded text-sm font-mono text-brandAccent truncate select-all">{pixKey}</code>
                       <Button variant="secondary" onClick={() => {navigator.clipboard.writeText(pixKey); addToast("Chave Pix copiada!", "info")}}>
@@ -330,25 +330,25 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
                {isLocked ? <LockedState /> : (
                  <div className="bg-brandSurface border border-brandBorder rounded-xl p-6 shadow-xl animate-fade-in">
                    <h2 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
-                     <Settings className="w-4 h-4 text-slate-500" /> Configurações da Loja
+                     <Settings className="w-4 h-4 text-brandTextSecondary" /> Configurações da Loja
                    </h2>
                    <form onSubmit={handleSaveSettings} className="space-y-5">
                      <InputGroup label="Nome da Loja" value={settings.name} onChange={(v: string) => setSettings({...settings, name: v})} />
                      
                      <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">WhatsApp Comercial</label>
+                        <label className="block text-xs font-bold text-brandTextSecondary uppercase mb-1.5">WhatsApp Comercial</label>
                         <div className="relative">
-                            <input className="w-full px-4 py-3 pl-12 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all" placeholder="5511999999999" value={settings.whatsapp} onChange={e => setSettings({...settings, whatsapp: e.target.value.replace(/\D/g,'')})} />
-                            <div className="absolute left-4 top-3.5 text-slate-500 font-bold text-xs">Tel:</div>
+                            <input className="w-full px-4 py-3 pl-12 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all placeholder:text-slate-700 focus:ring-1 focus:ring-brandPrimary" placeholder="5511999999999" value={settings.whatsapp} onChange={e => setSettings({...settings, whatsapp: e.target.value.replace(/\D/g,'')})} />
+                            <div className="absolute left-4 top-3.5 text-brandTextSecondary font-bold text-xs">Tel:</div>
                         </div>
-                        <p className="text-[10px] text-slate-600 mt-1">Necessário incluir DDD e código do país (Ex: 55).</p>
+                        <p className="text-[10px] text-brandTextSecondary mt-1">Necessário incluir DDD e código do país (Ex: 55).</p>
                      </div>
 
                      <div>
-                       <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Cor da Marca</label>
+                       <label className="block text-xs font-bold text-brandTextSecondary uppercase mb-1.5">Cor da Marca</label>
                        <div className="flex gap-3 items-center p-2 border border-brandBorder rounded bg-brandBg">
                          <input type="color" className="h-8 w-8 rounded cursor-pointer border-0 p-0 bg-transparent" value={settings.color} onChange={e => setSettings({...settings, color: e.target.value})} />
-                         <div className="font-mono text-xs text-slate-400 uppercase">{settings.color}</div>
+                         <div className="font-mono text-xs text-brandTextSecondary uppercase">{settings.color}</div>
                        </div>
                      </div>
 
@@ -370,7 +370,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ user, onLo
 const StatCard = ({ label, value, icon, capitalize }: any) => (
   <div className="bg-brandSurface p-4 rounded-xl border border-brandBorder shadow-sm hover:border-brandPrimary/30 transition-colors">
     <div className="flex justify-between items-start mb-2">
-      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{label}</span>
+      <span className="text-[10px] font-bold text-brandTextSecondary uppercase tracking-wider">{label}</span>
       {icon}
     </div>
     <div className={`text-2xl font-bold text-white ${capitalize ? 'capitalize' : ''}`}>{value}</div>
@@ -383,7 +383,7 @@ const TabButton = ({ active, onClick, label, alert }: any) => (
     className={`pb-3 text-sm font-medium transition-all relative whitespace-nowrap ${
       active 
         ? 'text-brandPrimary' 
-        : 'text-slate-500 hover:text-slate-300'
+        : 'text-brandTextSecondary hover:text-brandTextPrimary'
     }`}
   >
     {label}
@@ -394,11 +394,11 @@ const TabButton = ({ active, onClick, label, alert }: any) => (
 
 const InputGroup = ({ label, value, onChange, type = "text", required, placeholder }: any) => (
   <div>
-    <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">{label}</label>
+    <label className="block text-xs font-bold text-brandTextSecondary uppercase mb-1.5">{label}</label>
     <input 
       type={type}
       required={required}
-      className="w-full px-4 py-2.5 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all placeholder:text-slate-700"
+      className="w-full px-4 py-2.5 bg-brandBg border border-brandBorder rounded text-sm text-white focus:border-brandPrimary transition-all placeholder:text-slate-700 focus:ring-1 focus:ring-brandPrimary"
       placeholder={placeholder}
       value={value}
       onChange={e => onChange(e.target.value)}
@@ -410,6 +410,6 @@ const LockedState = () => (
   <div className="text-center py-16 border border-dashed border-brandBorder rounded-xl bg-brandSurface/50 animate-pulse-slow">
     <Lock className="w-8 h-8 text-amber-500 mx-auto mb-4 opacity-80" />
     <h3 className="text-lg font-bold text-white mb-1">Acesso Restrito</h3>
-    <p className="text-slate-500 text-sm">Regularize sua assinatura para gerenciar produtos.</p>
+    <p className="text-brandTextSecondary text-sm">Regularize sua assinatura para gerenciar produtos.</p>
   </div>
 );

@@ -19,21 +19,21 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   ...props
 }) => {
-  const baseStyle = "inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide";
+  const baseStyle = "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-brandBg focus:ring-brandPrimary";
   
   const variants = {
-    primary: "bg-brandPrimary text-white hover:bg-brandPrimaryHover border border-transparent shadow-lg shadow-blue-900/20",
-    secondary: "bg-brandSurfaceLight text-white hover:bg-slate-700 border border-brandBorder",
-    outline: "border border-slate-600 text-slate-300 hover:border-brandPrimary hover:text-brandPrimary bg-transparent",
-    ghost: "bg-transparent text-slate-400 hover:text-white hover:bg-brandSurfaceLight",
-    danger: "bg-red-900/30 text-red-400 border border-red-900/50 hover:bg-red-900/50",
-    success: "bg-emerald-900/30 text-emerald-400 border border-emerald-900/50 hover:bg-emerald-900/50",
+    primary: "bg-brandPrimary text-white hover:bg-brandPrimaryHover border border-transparent shadow-lg shadow-brandPrimary/20",
+    secondary: "bg-brandSurfaceLight text-brandTextPrimary hover:bg-slate-700 border border-brandBorder hover:border-slate-600",
+    outline: "border border-brandBorder text-brandTextSecondary hover:border-brandPrimary hover:text-brandPrimary bg-transparent",
+    ghost: "bg-transparent text-brandTextSecondary hover:text-brandTextPrimary hover:bg-brandSurfaceLight",
+    danger: "bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20",
+    success: "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 hover:bg-emerald-500/20",
   };
 
   const sizes = {
     sm: "px-3 py-1.5 text-xs",
-    md: "px-4 py-2 text-sm",
-    lg: "px-6 py-3 text-base",
+    md: "px-5 py-2.5 text-sm",
+    lg: "px-6 py-3.5 text-base",
   };
 
   const width = fullWidth ? "w-full" : "";

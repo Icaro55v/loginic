@@ -43,7 +43,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
 
   const filteredStores = stores.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  if (loading) return <div className="h-screen flex items-center justify-center bg-brandBg text-slate-500">Carregando Sistema...</div>;
+  if (loading) return <div className="h-screen flex items-center justify-center bg-brandBg text-brandTextSecondary">Carregando Sistema...</div>;
 
   return (
     <div className="min-h-screen bg-brandBg text-brandTextPrimary font-sans">
@@ -64,36 +64,36 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
         <div className="space-y-6">
            {/* Stats */}
            <div className="bg-brandSurface p-6 rounded-xl border border-brandBorder shadow-sm">
-             <h3 className="text-slate-400 text-xs font-bold uppercase mb-4 flex items-center gap-2">
+             <h3 className="text-brandTextSecondary text-xs font-bold uppercase mb-4 flex items-center gap-2">
                <TrendingUp className="w-4 h-4" /> Métricas Globais
              </h3>
              <div className="grid grid-cols-2 gap-4">
                <div className="bg-brandBg p-4 rounded border border-brandBorder text-center">
                  <div className="text-2xl font-bold text-white">{stores.length}</div>
-                 <div className="text-[10px] uppercase font-bold text-slate-500">Lojas Totais</div>
+                 <div className="text-[10px] uppercase font-bold text-brandTextSecondary">Lojas Totais</div>
                </div>
                <div className="bg-brandBg p-4 rounded border border-brandBorder text-center">
                  <div className="text-2xl font-bold text-emerald-400">{stores.filter(s => s.status === 'active').length}</div>
-                 <div className="text-[10px] uppercase font-bold text-slate-500">Ativas</div>
+                 <div className="text-[10px] uppercase font-bold text-brandTextSecondary">Ativas</div>
                </div>
              </div>
            </div>
 
            {/* Pix Config */}
            <div className="bg-brandSurface p-6 rounded-xl border border-brandBorder shadow-sm">
-             <h3 className="text-slate-400 text-xs font-bold uppercase mb-4 flex items-center gap-2">
+             <h3 className="text-brandTextSecondary text-xs font-bold uppercase mb-4 flex items-center gap-2">
                <DollarSign className="w-4 h-4" /> Gateway Manual
              </h3>
-             <label className="block text-xs text-slate-500 mb-1">Chave Pix de Recebimento</label>
+             <label className="block text-xs text-brandTextSecondary mb-1">Chave Pix de Recebimento</label>
              <div className="flex gap-2">
                <input 
-                 className="bg-brandBg border border-brandBorder rounded text-white p-2 flex-1 text-sm font-mono focus:border-brandPrimary focus:outline-none"
+                 className="bg-brandBg border border-brandBorder rounded text-white p-2 flex-1 text-sm font-mono focus:border-brandPrimary focus:outline-none placeholder:text-slate-700"
                  value={pixKey}
                  onChange={e => setPixKey(e.target.value)}
                />
                <Button onClick={handleSavePix} variant="secondary" size="sm">Salvar</Button>
              </div>
-             <p className="text-[10px] text-slate-600 mt-2 leading-tight">Esta chave é exibida para todos os lojistas pendentes.</p>
+             <p className="text-[10px] text-brandTextSecondary mt-2 leading-tight">Esta chave é exibida para todos os lojistas pendentes.</p>
            </div>
         </div>
 
@@ -102,9 +102,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
           <div className="p-6 border-b border-brandBorder flex justify-between items-center bg-brandSurfaceLight/20">
             <h2 className="font-bold text-lg text-white">Gestão de Clientes</h2>
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brandTextSecondary" />
               <input 
-                className="bg-brandBg border border-brandBorder rounded pl-9 pr-4 py-2 text-sm text-white focus:border-brandPrimary outline-none"
+                className="bg-brandBg border border-brandBorder rounded pl-9 pr-4 py-2 text-sm text-white focus:border-brandPrimary outline-none placeholder:text-slate-700"
                 placeholder="Buscar loja..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
@@ -114,11 +114,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
           
           <div className="overflow-y-auto flex-1 p-4 space-y-3">
              {filteredStores.map(store => (
-               <div key={store.id} className="bg-brandBg p-4 rounded border border-brandBorder flex items-center justify-between hover:border-slate-600 transition-colors">
+               <div key={store.id} className="bg-brandBg p-4 rounded border border-brandBorder flex items-center justify-between hover:border-brandTextSecondary/50 transition-colors">
                  <div>
                    <h4 className="font-bold text-white text-sm">{store.name}</h4>
                    <div className="flex items-center gap-3 text-xs mt-1">
-                     <span className="text-slate-400 capitalize bg-brandSurface px-2 rounded border border-brandBorder">{store.plan}</span>
+                     <span className="text-brandTextSecondary capitalize bg-brandSurface px-2 rounded border border-brandBorder">{store.plan}</span>
                      <span className={`px-2 rounded font-bold border ${
                        store.status === 'active' ? 'bg-emerald-950/30 text-emerald-500 border-emerald-900/50' : 'bg-amber-950/30 text-amber-500 border-amber-900/50'
                      }`}>
@@ -141,7 +141,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                  </Button>
                </div>
              ))}
-             {filteredStores.length === 0 && <div className="text-center text-slate-600 py-10 text-sm">Nenhum registro encontrado.</div>}
+             {filteredStores.length === 0 && <div className="text-center text-brandTextSecondary py-10 text-sm">Nenhum registro encontrado.</div>}
           </div>
         </div>
 

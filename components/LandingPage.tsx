@@ -57,22 +57,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
       
       {/* Subtle Dark Grid Background */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0 pointer-events-none"></div>
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(15,23,42,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.8)_1px,transparent_1px)] bg-[size:40px_40px] opacity-10"></div>
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(30,41,59,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(30,41,59,0.5)_1px,transparent_1px)] bg-[size:40px_40px] opacity-10"></div>
 
       {/* Navbar */}
-      <nav className="absolute top-0 left-0 w-full z-50 px-6 py-6 border-b border-white/5 bg-brandBg/50 backdrop-blur-md">
+      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 border-b border-brandBorder bg-brandBg/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.location.reload()}>
-            <div className="bg-brandSurfaceLight border border-white/10 p-2 rounded-lg">
+          <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.location.reload()}>
+            <div className="bg-brandSurfaceLight border border-brandBorder p-2 rounded-lg group-hover:border-brandPrimary/50 transition-colors">
               <Dog className="w-5 h-5 text-brandPrimary" />
             </div>
-            <span className="text-lg font-bold tracking-tight text-white">LojinIC <span className="text-slate-600 text-xs font-medium ml-1">PRO</span></span>
+            <span className="text-lg font-bold tracking-tight text-white">LojinIC <span className="text-brandTextSecondary text-xs font-medium ml-1 bg-brandSurfaceLight px-1.5 py-0.5 rounded">PRO</span></span>
           </div>
           
           <div className="flex items-center gap-3">
              <button 
                onClick={() => scrollToAuth(false)}
-               className="hidden sm:flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors px-4 py-2"
+               className="hidden sm:flex items-center gap-2 text-sm font-medium text-brandTextSecondary hover:text-brandTextPrimary transition-colors px-4 py-2"
              >
                <LayoutDashboard className="w-4 h-4" /> Login
              </button>
@@ -88,12 +88,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
       </nav>
 
       {/* Main Content */}
-      <div className="flex flex-col lg:flex-row flex-1 relative z-10 pt-24 lg:pt-0">
+      <div className="flex flex-col lg:flex-row flex-1 relative z-10 pt-24 lg:pt-0 min-h-screen">
         
         {/* Left: Value Prop */}
         <div className="lg:w-[55%] flex flex-col justify-center p-8 lg:p-20 xl:p-24">
           <div className="max-w-2xl animate-slide-up">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandSurfaceLight border border-brandBorder text-brandAccent text-xs font-bold uppercase tracking-wider mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandSurfaceLight border border-brandBorder text-brandAccent text-xs font-bold uppercase tracking-wider mb-8 shadow-sm">
               <Sparkles className="w-3 h-3" /> Plataforma Enterprise
             </div>
 
@@ -104,7 +104,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
               </span>
             </h1>
             
-            <p className="text-lg text-slate-400 mb-10 leading-relaxed max-w-lg border-l-2 border-brandPrimary pl-6">
+            <p className="text-lg text-brandTextSecondary mb-10 leading-relaxed max-w-lg border-l-2 border-brandPrimary pl-6">
               Infraestrutura robusta para catálogos digitais. Checkout direto no WhatsApp. Projetado para conversão máxima.
             </p>
 
@@ -114,15 +114,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
             </div>
 
             <div className="flex items-center gap-4 opacity-60">
-               <div className="h-px bg-slate-700 flex-1"></div>
-               <span className="text-xs uppercase tracking-widest text-slate-500">Trusted by Entrepreneurs</span>
-               <div className="h-px bg-slate-700 flex-1"></div>
+               <div className="h-px bg-brandBorder flex-1"></div>
+               <span className="text-xs uppercase tracking-widest text-brandTextSecondary">Trusted by Entrepreneurs</span>
+               <div className="h-px bg-brandBorder flex-1"></div>
             </div>
           </div>
         </div>
 
         {/* Right: Auth Form */}
-        <div className="lg:w-[45%] flex items-center justify-center p-6 lg:p-12 bg-brandBg lg:bg-brandSurface/30 border-l border-white/5" id="auth-card">
+        <div className="lg:w-[45%] flex items-center justify-center p-6 lg:p-12 bg-brandBg/50 lg:bg-brandSurface/30 border-l border-brandBorder backdrop-blur-sm" id="auth-card">
           <div className="w-full max-w-md animate-fade-in">
             
             <div className="bg-brandSurface border border-brandBorder rounded-2xl p-8 shadow-2xl shadow-black/50">
@@ -130,7 +130,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
                 <h2 className="text-xl font-bold text-white mb-2">
                   {isRegister ? 'Nova Conta Corporativa' : 'Acesso ao Painel'}
                 </h2>
-                <p className="text-slate-400 text-sm">
+                <p className="text-brandTextSecondary text-sm">
                   {isRegister ? 'Configure sua loja em segundos.' : 'Gerencie seu catálogo e vendas.'}
                 </p>
               </div>
@@ -203,10 +203,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
                 </Button>
               </form>
 
-              <div className="mt-8 pt-6 border-t border-white/5 text-center">
+              <div className="mt-8 pt-6 border-t border-brandBorder text-center">
                 <button 
                   onClick={() => setIsRegister(!isRegister)}
-                  className="text-xs text-slate-500 hover:text-white transition-colors font-medium"
+                  className="text-xs text-brandTextSecondary hover:text-white transition-colors font-medium"
                 >
                   {isRegister ? 'Já possui acesso? Login' : 'Não tem conta? Registrar'}
                 </button>
@@ -220,13 +220,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
 };
 
 const FeatureCard = ({ icon, title, desc }: any) => (
-  <div className="flex gap-4 p-4 rounded-xl bg-brandSurface/50 border border-white/5 hover:bg-brandSurface transition-colors duration-300">
-    <div className="w-10 h-10 rounded-lg bg-brandSurfaceLight text-brandPrimary flex items-center justify-center shrink-0 border border-white/5">
+  <div className="flex gap-4 p-4 rounded-xl bg-brandSurface/50 border border-brandBorder hover:bg-brandSurface transition-colors duration-300 group">
+    <div className="w-10 h-10 rounded-lg bg-brandSurfaceLight text-brandPrimary flex items-center justify-center shrink-0 border border-brandBorder group-hover:border-brandPrimary/30 transition-colors">
       {icon}
     </div>
     <div>
-      <h3 className="font-bold text-slate-200 text-sm mb-1">{title}</h3>
-      <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
+      <h3 className="font-bold text-brandTextPrimary text-sm mb-1">{title}</h3>
+      <p className="text-xs text-brandTextSecondary leading-relaxed">{desc}</p>
     </div>
   </div>
 );
@@ -237,22 +237,22 @@ const PlanOption = ({ title, price, active, onClick, tag }: any) => (
     className={`cursor-pointer relative p-3 rounded-lg border transition-all duration-200 text-center ${
       active 
         ? 'border-brandPrimary bg-brandPrimary/10' 
-        : 'border-slate-700 bg-brandSurfaceLight/50 hover:border-slate-500'
+        : 'border-brandBorder bg-brandSurfaceLight/30 hover:border-brandTextSecondary'
     }`}
   >
     {tag && <span className="absolute -top-2 -right-1 bg-brandAccent text-brandBg text-[9px] font-bold px-1.5 py-0.5 rounded shadow-sm">{tag}</span>}
-    <div className={`text-[10px] font-bold uppercase mb-1 ${active ? 'text-brandPrimary' : 'text-slate-500'}`}>{title}</div>
+    <div className={`text-[10px] font-bold uppercase mb-1 ${active ? 'text-brandPrimary' : 'text-brandTextSecondary'}`}>{title}</div>
     <div className="text-lg font-bold text-white">R$ {price}</div>
   </div>
 );
 
 const InputLabel = ({ children }: {children: React.ReactNode}) => (
-  <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5 tracking-wider">{children}</label>
+  <label className="block text-xs font-bold text-brandTextSecondary uppercase mb-1.5 tracking-wider">{children}</label>
 );
 
 const DarkInput = (props: any) => (
   <input 
     {...props}
-    className="w-full px-4 py-3 rounded-lg bg-brandBg border border-brandBorder text-white placeholder:text-slate-600 focus:border-brandPrimary focus:ring-1 focus:ring-brandPrimary transition-all text-sm"
+    className="w-full px-4 py-3 rounded-lg bg-brandBg border border-brandBorder text-brandTextPrimary placeholder:text-slate-700 focus:border-brandPrimary focus:ring-1 focus:ring-brandPrimary transition-all text-sm shadow-inner"
   />
 );
